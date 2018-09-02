@@ -6,12 +6,10 @@
 	<link rel="stylesheet" href="../dist/pure-modal.css">
 </head>
 <body>
-	<div class="content-wrapper">
 		<button class="btn btn-primary" onclick="pure_modal.open()">Open modal</button>
 		<button class="btn btn-primary" onclick="pure_modal_pre_made.open()">Open pre made modal</button>
-	</div>
 
-	<div class="pure-modal tabbed" id="pre_made_modal">
+	<div class="pure-modal" id="pre_made_modal">
 		<button class="pure-modal-close" data-dismiss="modal">
 			<span>x</span>
 		</button>
@@ -93,7 +91,7 @@
 			footer_buttons: [
 			{
 				classes: 'btn btn-danger',
-				dismiss: true,
+				remove_type: 'dismiss',
 				title: 'Cancel'
 			},
 			{

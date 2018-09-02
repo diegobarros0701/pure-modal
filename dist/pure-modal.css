@@ -115,6 +115,6 @@
   overflow: hidden;
 }
 /* line 118, ../src/pure-modal.scss */
-.pure-modal-open .content-wrapper {
+.pure-modal-open > *:not(.pure-modal):not(script) {
   filter: blur(4px);
 }

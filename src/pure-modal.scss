@@ -115,7 +115,14 @@
 .pure-modal-open {
   overflow: hidden;
 
-  .content-wrapper {
-    filter: blur(4px);
+  & > *:not(.pure-modal):not(script), {
+      filter: blur(4px);
   }
+  // .content-wrapper {
+  //   filter: blur(4px);
+  // }
 }
+
+// *:not(script) {
+//   color: red;
+// }
