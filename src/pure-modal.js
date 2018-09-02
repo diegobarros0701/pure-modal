@@ -1,77 +1,64 @@
 (function() {
-	var _this;
 	
 	this.PureModal = function() {
-		_this = this;
-		// this.transitionEnd = transitionSelect();
-		_this.close_button = null;
+		var _this = this;
+		
 		var defaults = {
-			// selector: 'modal'
-			// className: 'fade-and-drop',
-			// closeButton: true,
-			// content: "",
-			// maxWidth: 600,
-			// minWidth: 280,
-			// overlay: true
 			id: null,
 			title: '',
 			content: '',
-			close_button: {
-				enabled: true,
-				// content: '<button class="modal-close" data-dismiss="modal"><span>x</span></button>'
-			},
+			show_close_button: true,
 			footer_buttons: [],
 			close_modals_on_show: false,
 			width: '80%'
 		}
 
-		// options structure
+		if(typeof arguments[0] === "string") {
 
-		// opt = {
-		// 	footer_buttons: [
-		// 		{
-		// 			classes: 'btn btn-primary',
-		// 			title: 'Cancelar'
-		// 		},
-		// 		{
-		// 			classes: 'btn btn-success btn-confirm',
-		// 			title: 'Confirmar'
-		// 		}
-		// 	]
-		// }
+			if(typeof arguments[1] === "object") {
+				_this.options = extendDefaults(defaults, arguments[1]);
+			} else {
+				_this.options = defaults;
+			}
 
-		// console.log(arguments);
+			var selector = arguments[0];
+			var pre_made_modal = document.querySelector(selector);
 
-		// Create options by extending defaults with the passed in arugments
-		// arguments is a global object that every function has
-		if (arguments[0] && typeof arguments[0] === "object") {
+			_this.options.title = pre_made_modal.querySelector('.pure-modal-header').innerHTML;
+			_this.options.content = pre_made_modal.querySelector('.pure-modal-body').innerHTML;
+
+			pre_made_modal.querySelectorAll('.pure-modal-footer button').forEach(function(button) {
+					_this.options.footer_buttons.push({
+						classes: button.className,
+						title: button.textContent,
+						dismiss: (button.getAttribute('data-dismiss') === 'modal')
+					});
+				})
+
+			pre_made_modal.parentNode.removeChild(pre_made_modal);
+		} else if(typeof arguments[0] === "object") {
 			_this.options = extendDefaults(defaults, arguments[0]);
 		} else {
 			_this.options = defaults;
 		}
-
-		// build.call(this);
-
 	}
 
 	// PUBLIC METHODS
 
 
 	PureModal.prototype.open = function() {
-		build.call(_this);
-		initializeEvents.call(_this);
-		// this.modal.className += ' visible';
-		// document.body.classList.add('modal-open');
+		build.call(this);
+		initializeEvents.call(this);
 	}
 
 	PureModal.prototype.close = function() {
 		document.body.className = document.body.className.replace('pure-modal-open', '');
 		// this.modal.className = this.modal.className.replace('visible', '');
-		document.body.removeChild(_this.modal);
+		document.body.removeChild(this.modal);
 	}
 
 	PureModal.prototype.addFooterButton = function(classes, title) {
-		_this.options.footer_buttons.push({
+		this.options.footer_buttons.push({
 			classes: classes,
 			title: title
 		})
@@ -80,7 +67,6 @@
 
 	// PRIVATE METHODS
 
-	// Utility method to extend defaults with user options
 	function extendDefaults(source, properties) {
 		var property;
 		for (property in properties) {
@@ -98,36 +84,36 @@
 		var modal_footer;
 		var close_button;
 
+		this.modal = document.createElement('div');
+		this.modal.className = 'pure-modal visible';
 
-		_this.modal = document.createElement('div');
-		_this.modal.className = 'pure-modal visible';
 
-
-		if(_this.options.close_button.enabled) {
-			_this.close_button = document.createElement('button');
-			_this.close_button.className = 'pure-modal-close';
-			_this.close_button.innerHTML = '<span>x</span>'
-			_this.modal.appendChild(_this.close_button);
+		if(this.options.show_close_button) {
+			this.close_button = document.createElement('button');
+			this.close_button.className = 'pure-modal-close';
+			this.close_button.innerHTML = '<span>x</span>'
+			this.modal.appendChild(this.close_button);
 		}
 
 		modal_content = document.createElement('div');
 		modal_content.className = 'pure-modal-content';
+		if(this.options.width) modal_content.style.width = this.options.width;
 
 		modal_header = document.createElement('div');
 		modal_header.className = 'pure-modal-header';
-		modal_header.innerHTML = _this.options.title;
+		modal_header.innerHTML = this.options.title;
 		modal_content.appendChild(modal_header);
 
 		modal_body = document.createElement('div');
 		modal_body.className = 'pure-modal-body';
-		modal_body.innerHTML = _this.options.content;
+		modal_body.innerHTML = this.options.content;
 		modal_content.appendChild(modal_body);
 
-		if(_this.options.footer_buttons !== []) {
+		if(this.options.footer_buttons !== []) {
 			modal_footer = document.createElement('div');
 			modal_footer.className = 'pure-modal-footer';
 
-			_this.options.footer_buttons.forEach(function(footer_button) {
+			this.options.footer_buttons.forEach(function(footer_button) {
 				var btn_footer = document.createElement('button');
 				btn_footer.className = footer_button.classes;
 				btn_footer.innerText = footer_button.title;
@@ -143,9 +129,9 @@
 			modal_content.appendChild(modal_footer);
 		}
 
-		_this.modal.appendChild(modal_content);
+		this.modal.appendChild(modal_content);
 
-		document.body.appendChild(_this.modal);
+		document.body.appendChild(this.modal);
 		document.body.classList.add('pure-modal-open');
 	}
 
@@ -157,27 +143,14 @@
 	}
 
 	function initializeEvents() {
+		var _this = this;
+
 		if(_this.close_button) {
 			_this.close_button.addEventListener('click', _this.close.bind(_this))
 		}
 
-		// console.log(this);
 		_this.modal.querySelectorAll('[data-dismiss="modal"]').forEach(function(field) {
-			// console.log(this);
 			field.addEventListener('click', _this.close.bind(_this));
 		})
-
-	// 	document.querySelector('[data-toggle="modal"]').addEventListener('click', function() {
-	// 		var modal_background = document.createElement('div');
-	// 		modal_background.className = 'modal_background';
-
-	// 		var target = this.dataset.target;
-	// 		if(target !== undefined) modal_selector = target;
-
-	// 		var body = document.querySelector('body');
-	// 		body.classList.add('modal-open');
-	// 		body.appendChild(modal_background);
-	// 		// $(modal_selector).addClass('visible');
-	// 	})
-}
+	}
 }())
