@@ -95,10 +95,11 @@ Close the modal
 pure_modal.close();
 ```
 
-#### addFooterButton(classes, title)
+#### addFooterButton(classes, title, dismiss)
 Add a new button to the modal footer
 ```javascript
-pure_modal.addFooterButton('btn btn-success', 'Confirm');
+pure_modal.addFooterButton('btn btn-success', 'Cancel', true);
+pure_modal.addFooterButton('btn btn-success', 'Confirm', false);
 ```
 
 ## Events
