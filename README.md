@@ -39,6 +39,9 @@ var pure_modal = new PureModal({
 });
 ```
 
+## Important
+To work as expected, you will need to put your main code inside an element with the **content-wrapper** class
+
 ## Methods
 
 #### open()
