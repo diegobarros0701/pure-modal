@@ -1,0 +1,79 @@
+.pure-modal {
+  display: flex;
+  overflow: auto;
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1050;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: red;
+  transition: all 3s;
+}
+.pure-modal .pure-modal-close {
+  position: fixed;
+  right: 25px;
+  top: -10px;
+  background: transparent;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 55px;
+  font-weight: bold;
+  color: #bababa;
+}
+.pure-modal .pure-modal-close:hover {
+  opacity: 0.7;
+}
+.pure-modal .pure-modal-content {
+  background-color: white;
+  width: 80%;
+  margin: auto;
+  position: relative;
+  border-radius: 5px;
+  transform: scale(0.8);
+  transition: transform 0.3s cubic-bezier(0.09, 0.74, 0.35, 1.49);
+}
+.pure-modal .pure-modal-content .pure-modal-header,
+.pure-modal .pure-modal-content .pure-modal-body,
+.pure-modal .pure-modal-content .pure-modal-footer {
+  padding: 0 20px;
+}
+.pure-modal .pure-modal-content .pure-modal-header {
+  padding-top: 20px;
+}
+.pure-modal .pure-modal-content .pure-modal-header .title {
+  font-family: "Poppins";
+  font-weight: bold;
+  opacity: 0.7;
+}
+.pure-modal .pure-modal-content .pure-modal-body {
+  padding-top: 10px;
+}
+.pure-modal .pure-modal-content .pure-modal-footer {
+  padding-top: 15px;
+  padding-bottom: 20px;
+  text-align: right;
+  background-color: #f0f0f0;
+}
+.pure-modal .pure-modal-content .pure-modal-footer button {
+  margin-left: 5px;
+}
+.pure-modal.visible {
+  visibility: visible;
+  background-color: rgba(35, 34, 34, 0.7);
+}
+.pure-modal.visible .pure-modal-content {
+  transform: scale(1);
+}
+
+.pure-modal-open {
+  overflow: hidden;
+}
+.pure-modal-open .content-wrapper {
+  filter: blur(4px);
+}

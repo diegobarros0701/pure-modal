@@ -1,0 +1,42 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Pure Modal</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="../src/pure-modal.css">
+</head>
+<body>
+	<div class="content-wrapper">
+		<button class="btn btn-primary" onclick="pure_modal.open()">Open modal</button>
+	</div>
+
+	<script src="../src/pure-modal.js"></script>
+	<script>
+		var pure_modal = new PureModal({
+			id: 'myPureModalId',
+			classes: 'class1 class2 class3',
+			title: '<h3 class="title">Modal title</h3>',
+			content: '<div class="form-group"><label>Name</label><input type="text" class="form-control"/></div>',
+			close_button: {
+				enabled: true
+			},
+			footer_buttons: [
+				{
+					classes: 'btn btn-danger',
+					dismiss: true,
+					title: 'Cancel'
+				},
+				{
+					classes: 'btn btn-success',
+					title: 'Confirm'
+				}
+			],
+			close_modals_on_show: false,
+			width: '80%',
+			auto_open: false,
+			onOpen: function() {},
+			onClose: function() {}
+		});
+	</script>
+</body>
+</html>
