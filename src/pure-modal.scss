@@ -46,6 +46,8 @@
     }
 
     .pure-modal-header {
+      display: flex;
+      justify-content: space-between;
       padding-top: 20px;
 
       .title {
@@ -115,12 +117,12 @@
 .pure-modal-open {
   overflow: hidden;
 
-  & > *:not(.pure-modal):not(script), {
-      filter: blur(4px);
-  }
-  // .content-wrapper {
-  //   filter: blur(4px);
+  // & > *:not(.pure-modal):not(script), {
+  //     filter: blur(4px);
   // }
+  .content-wrapper {
+    filter: blur(4px);
+  }
 }
 
 // *:not(script) {

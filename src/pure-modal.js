@@ -3,8 +3,6 @@
 	this.PureModal = function() {
 		var _this = this;
 		
-
-		
 		var defaults = {
 			id: null,
 			classes: null,
@@ -15,6 +13,7 @@
 			close_modals_on_show: false,
 			width: '80%',
 			append_to_body: false,
+			build_on_show: false, // TO DO
 			wrap_content: {
 				enabled: false,
 				class: 'content-wrapper'
@@ -55,19 +54,20 @@
 				_this.last_button_index++;
 			})
 
-			// if(!_this.options.wrap_content.enabled) {
+			// if(_this.options.wrap_content.enabled) {
 			// 	var wrap_content_element = document.createElement('div');
 			// 	wrap_content_element.className = _this.options.wrap_content.class;
 
 
 			// 	document.body.appendChild(wrap_content_element);
 
-			// 	// _this.options.append_to_body = true;
+			// 	_this.options.append_to_body = true;
 			// }
 
-			// if(_this.options.append_to_body) {
-			// 	pre_made_modal.parentNode.removeChild(pre_made_modal);
-			// }
+			if(_this.options.append_to_body) {
+				_this.modal.parentNode.removeChild(_this.modal);
+				document.body.appendChild(_this.modal);
+			}
 		} else if(typeof arguments[0] === "object") {
 			_this.options = extendDefaults(defaults, arguments[0]);
 		} else {
@@ -93,6 +93,7 @@
 
 	PureModal.prototype.destroy = function() {
 		document.body.removeChild(this.modal);
+		document.body.className = document.body.className.replace('pure-modal-open', '');
 	}
 
 	PureModal.prototype.setProperty = function(prop, value)  {

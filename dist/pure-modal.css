@@ -49,49 +49,51 @@
 }
 /* line 48, ../src/pure-modal.scss */
 .pure-modal .pure-modal-content .pure-modal-header {
+  display: flex;
+  justify-content: space-between;
   padding-top: 20px;
 }
-/* line 51, ../src/pure-modal.scss */
+/* line 53, ../src/pure-modal.scss */
 .pure-modal .pure-modal-content .pure-modal-header .title {
   font-family: 'Poppins';
   opacity: 0.7;
 }
-/* line 57, ../src/pure-modal.scss */
+/* line 59, ../src/pure-modal.scss */
 .pure-modal .pure-modal-content .pure-modal-body {
   padding-top: 10px;
 }
-/* line 61, ../src/pure-modal.scss */
+/* line 63, ../src/pure-modal.scss */
 .pure-modal .pure-modal-content .pure-modal-footer {
   padding-top: 15px;
   padding-bottom: 20px;
   text-align: right;
   background-color: #f0f0f0;
 }
-/* line 67, ../src/pure-modal.scss */
+/* line 69, ../src/pure-modal.scss */
 .pure-modal .pure-modal-content .pure-modal-footer button {
   margin-left: 5px;
 }
-/* line 73, ../src/pure-modal.scss */
+/* line 75, ../src/pure-modal.scss */
 .pure-modal.visible {
   visibility: visible;
   background-color: rgba(35, 34, 34, 0.7);
 }
-/* line 77, ../src/pure-modal.scss */
+/* line 79, ../src/pure-modal.scss */
 .pure-modal.visible .pure-modal-content {
   transform: scale(1);
 }
-/* line 83, ../src/pure-modal.scss */
+/* line 85, ../src/pure-modal.scss */
 .pure-modal.tabbed .pure-modal-content .pure-modal-header {
   background-color: #307b9b;
   padding: 0;
 }
-/* line 87, ../src/pure-modal.scss */
+/* line 89, ../src/pure-modal.scss */
 .pure-modal.tabbed .pure-modal-content .pure-modal-header .tabs-header {
   display: flex;
   align-items: center;
   height: 60px;
 }
-/* line 92, ../src/pure-modal.scss */
+/* line 94, ../src/pure-modal.scss */
 .pure-modal.tabbed .pure-modal-content .pure-modal-header .tabs-header a {
   color: white;
   height: 100%;
@@ -104,17 +106,17 @@
   transition-property: background-color, color;
   transition-duration: 0.35s;
 }
-/* line 93, ../src/pure-modal.scss */
+/* line 95, ../src/pure-modal.scss */
 .pure-modal.tabbed .pure-modal-content .pure-modal-header .tabs-header a.active {
   background-color: white;
   color: #565656;
 }
 
-/* line 115, ../src/pure-modal.scss */
+/* line 117, ../src/pure-modal.scss */
 .pure-modal-open {
   overflow: hidden;
 }
-/* line 118, ../src/pure-modal.scss */
-.pure-modal-open > *:not(.pure-modal):not(script) {
+/* line 123, ../src/pure-modal.scss */
+.pure-modal-open .content-wrapper {
   filter: blur(4px);
 }
