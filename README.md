@@ -1,5 +1,5 @@
 ## Pure Modal
-Pure Modal is a JS plugin made with Vanilla JS, this means that it has no dependencies and is fastest as possible.
+Pure Modal is a JS plugin made only with Vanilla JS. It has no dependencies which helps to make it fastest as possible.
 
 ## Usage
 You can create a new modal from scratch
